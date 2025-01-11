@@ -15,9 +15,6 @@ class SpeakerFactory extends Factory
      */
     protected $model = Speaker::class;
 
-    /**
-     * Define the model's default state.
-     */
     public function definition(): array
     {
         return [

@@ -15,9 +15,6 @@ class VenueFactory extends Factory
      */
     protected $model = Venue::class;
 
-    /**
-     * Define the model's default state.
-     */
     public function definition(): array
     {
         return [

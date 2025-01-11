@@ -16,9 +16,6 @@ class ConferenceFactory extends Factory
      */
     protected $model = Conference::class;
 
-    /**
-     * Define the model's default state.
-     */
     public function definition(): array
     {
         return [
