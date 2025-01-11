@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('region');
             $table->unsignedInteger('venue');
-            $table->foreignId('venue_id')->nullable();
+            $table->foreignId('venue_id');
             $table->timestamps();
         });
     }
