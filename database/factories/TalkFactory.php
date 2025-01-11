@@ -16,9 +16,6 @@ class TalkFactory extends Factory
      */
     protected $model = Talk::class;
 
-    /**
-     * Define the model's default state.
-     */
     public function definition(): array
     {
         return [
