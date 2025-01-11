@@ -37,7 +37,11 @@ models:
   Talk:
     title: string
     abstract: text
+    speaker_id: unsignedInteger
 
     relationships:
       belongsTo: Speaker
       belongsToMany: Conference
+
+
+seeders: conference, venue, speaker, talk
