@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Venue;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -10,18 +11,21 @@ return new class extends Migration
     {
         Schema::create('conferences', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name', 60);
             $table->string('decisions');
+
             $table->dateTime('start_date');
             $table->dateTime('end_date');
+
             $table->string('status');
             $table->string('region');
-            $table->unsignedInteger('venue');
-            $table->foreignId('venue_id');
+
+            $table->foreignIdFor(Venue::class, 'venue_id')->nullable();
+
             $table->timestamps();
         });
     }
-    
+
     public function down(): void
     {
         Schema::dropIfExists('conferences');
