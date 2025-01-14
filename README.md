@@ -1,4 +1,4 @@
-# Black Box
+# Event Managment
 
 ## The Tech Stack
 
@@ -7,17 +7,11 @@
 
 ## Used Packages
 
-- [shield](https://filamentphp.com/plugins/bezhansalleh-shield) For roles and permissions.
-- [Jalali](https://filamentphp.com/plugins/mokhosh-jalali) For showing jalali date.
-- [Overlook](https://v2.filamentphp.com/plugins/overlook) For showing an overview of app models in the admin panel.
-- [Blade tabler icons](https://github.com/anodyne/blade-tabler-icons) For extra icons.
-- [Blade tabler icons](https://tabler.io/icons) For extra icons.
-- [Hero icons](https://heroicons.com/) For extra icons.
-- [Wireui](https://wireui.dev/) For components.
+- [blueprint](https://blueprint.laravelshift.com/docs/installation/) For Code generation.
 
 ### Project for:
 
-this help to the cafe for management and analysis date.  
+help for management events  
 
 ## Running Locally
 
@@ -55,24 +49,6 @@ php artisan migrate
 next:
 ```bash
 npm run dev
-```
-
-### run this command and have SuperAdmin:
-
-```php
-php artisan db:seed --class=SuperAdminSeeder
-```
-
-### Install shield:
-
-- By this command your user become to SuperAdmin (if you have more then one user you can chose what user want to be SuperAdmin)
-```php
-php artisan shield:install
-```
-
-### Add policy:
-```php
-php artisan shield:generate --all
 ```
 
 ### run:
