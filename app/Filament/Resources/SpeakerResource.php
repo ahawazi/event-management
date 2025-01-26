@@ -22,21 +22,7 @@ class SpeakerResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('bio')
-                    ->required()
-                    ->columnSpanFull(),
-                Forms\Components\TextInput::make('twitter_handle')
-                    ->required()
-                    ->maxLength(255),
-            ]);
+            ->schema(Speaker::getForm());
     }
 
     public static function table(Table $table): Table
@@ -57,6 +43,11 @@ class SpeakerResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+
+                Tables\Columns\TextColumn::make('qualifications')
+                    // ->value(fn ($record) => implode(', ', $record->qualifications))
+                    ->searchable()
+                    ->sortable(),
             ])
             ->filters([
                 //
