@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\Region;
 use App\Filament\Resources\ConferenceResource\Pages;
-use App\Filament\Resources\ConferenceResource\RelationManagers;
 use App\Models\Conference;
 use Filament\Forms;
 use Filament\Forms\Components\Toggle;
@@ -11,8 +11,6 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ConferenceResource extends Resource
 {
@@ -68,9 +66,10 @@ class ConferenceResource extends Resource
                     ])
                     ->required(),
 
-                Forms\Components\TextInput::make('region')
+                    Forms\Components\Select::make('region')
                     ->required()
-                    ->maxLength(255),
+                    ->enum(Region::class)
+                    ->options(Region::class),
 
                 Forms\Components\Select::make('venue_id')
                     ->relationship('venue', 'name'),
