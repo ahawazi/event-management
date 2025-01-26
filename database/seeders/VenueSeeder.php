@@ -9,6 +9,6 @@ class VenueSeeder extends Seeder
 {
     public function run(): void
     {
-        Venue::factory()->count(5)->create();
+        Venue::factory()->count(2)->create();
     }
 }

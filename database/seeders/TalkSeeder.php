@@ -9,6 +9,6 @@ class TalkSeeder extends Seeder
 {
     public function run(): void
     {
-        Talk::factory()->count(5)->create();
+        Talk::factory()->count(2)->create();
     }
 }
