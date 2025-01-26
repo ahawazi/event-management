@@ -5,8 +5,10 @@ namespace App\Filament\Resources;
 use App\Enums\Region;
 use App\Filament\Resources\ConferenceResource\Pages;
 use App\Models\Conference;
+use App\Models\Speaker;
 use App\Models\Venue;
 use Filament\Forms;
+use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -14,6 +16,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ConferenceResource extends Resource
 {
@@ -69,7 +72,7 @@ class ConferenceResource extends Resource
                     ])
                     ->required(),
 
-                    Forms\Components\Select::make('region')
+                Forms\Components\Select::make('region')
                     ->live()
                     ->required()
                     ->enum(Region::class)
@@ -81,10 +84,17 @@ class ConferenceResource extends Resource
 
                     ->editOptionForm(Venue::getForm())
                     ->createOptionForm(Venue::getForm())
-                    
+
                     ->relationship('venue', 'name', modifyQueryUsing: function (Builder $query, Get $get) {
                         return $query->where('region', $get('region'));
                     }),
+
+                CheckboxList::make('speakers')
+                    ->relationship('speakers', 'name')
+                    ->options(
+                        Speaker::all()->pluck('name', 'id')
+                    )
+
 
                 // TODO
                 // Forms\Components\TextInput::make('website')
