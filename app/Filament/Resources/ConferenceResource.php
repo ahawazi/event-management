@@ -5,12 +5,15 @@ namespace App\Filament\Resources;
 use App\Enums\Region;
 use App\Filament\Resources\ConferenceResource\Pages;
 use App\Models\Conference;
+use App\Models\Venue;
 use Filament\Forms;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class ConferenceResource extends Resource
 {
@@ -67,12 +70,21 @@ class ConferenceResource extends Resource
                     ->required(),
 
                     Forms\Components\Select::make('region')
+                    ->live()
                     ->required()
                     ->enum(Region::class)
                     ->options(Region::class),
 
                 Forms\Components\Select::make('venue_id')
-                    ->relationship('venue', 'name'),
+                    ->searchable()
+                    ->preload()
+
+                    ->editOptionForm(Venue::getForm())
+                    ->createOptionForm(Venue::getForm())
+                    
+                    ->relationship('venue', 'name', modifyQueryUsing: function (Builder $query, Get $get) {
+                        return $query->where('region', $get('region'));
+                    }),
 
                 // TODO
                 // Forms\Components\TextInput::make('website')
