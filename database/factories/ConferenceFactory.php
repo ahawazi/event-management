@@ -19,11 +19,11 @@ class ConferenceFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'decisions' => $this->faker->word(),
-            'start_date' => $this->faker->dateTime(),
-            'end_date' => $this->faker->dateTime(),
-            'status' => $this->faker->word(),
+            'name' => fake()->name(),
+            'decisions' => fake()->word(),
+            'start_date' => fake()->dateTime(),
+            'end_date' => fake()->dateTime(),
+            'status' => fake()->word(),
             'region' => fake()->randomElement(Region::class),
             'venue_id' => Venue::factory(),
         ];

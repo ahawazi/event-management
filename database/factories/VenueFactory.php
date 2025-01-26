@@ -19,10 +19,10 @@ class VenueFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'city' => $this->faker->city(),
-            'country' => $this->faker->country(),
-            'postal_code' => $this->faker->postcode(),
+            'name' => fake()->name(),
+            'city' => fake()->city(),
+            'country' => fake()->country(),
+            'postal_code' => fake()->postcode(),
             'region' => fake()->randomElement(Region::class),
         ];
     }
