@@ -12,11 +12,12 @@ return new class extends Migration
         Schema::create('conferences', function (Blueprint $table) {
             $table->id();
             $table->string('name', 60);
-            $table->string('decisions');
+            $table->text('decisions');
 
             $table->dateTime('start_date');
             $table->dateTime('end_date');
 
+            $table->boolean('is_published')->default(false);
             $table->string('status');
             $table->string('region');
 

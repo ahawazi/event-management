@@ -6,6 +6,7 @@ use App\Filament\Resources\ConferenceResource\Pages;
 use App\Filament\Resources\ConferenceResource\RelationManagers;
 use App\Models\Conference;
 use Filament\Forms;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -45,9 +46,7 @@ class ConferenceResource extends Resource
                     // chose what buttons do't want to show
                     // ->disableToolbarButtons(['italic'])
                     // chose what buttons do want to show
-                    ->ToolbarButtons(['bold', 'link', 'h1', 'h2'])
-
-                    ->maxLength(255),
+                    ->ToolbarButtons(['bold', 'link', 'h1', 'h2']),
 
                 Forms\Components\DateTimePicker::make('start_date')
                     // hide native date picker
@@ -58,9 +57,16 @@ class ConferenceResource extends Resource
                     ->native(false)
                     ->required(),
 
-                Forms\Components\TextInput::make('status')
-                    ->required()
-                    ->maxLength(255),
+                Toggle::make('is_published')
+                    ->default(false),
+
+                Forms\Components\Select::make('status')
+                    ->options([
+                        'draft' => 'Draft',
+                        'published' => 'Published',
+                        'archived' => 'Archived',
+                    ])
+                    ->required(),
 
                 Forms\Components\TextInput::make('region')
                     ->required()
