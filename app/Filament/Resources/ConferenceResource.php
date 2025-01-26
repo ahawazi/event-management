@@ -24,23 +24,59 @@ class ConferenceResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('Conference Name')
+
+                    ->helperText('The name of the conference.')
+                    // ->placeholder('Enter the name of the conference.')
+
+                    // hint is a thing in top right corner of the input
+                    // ->hint('The name of the conference.')
+                    // ->hintIcon('heroicon-o-rectangle-stack')
+                    // ->hintAction('https://google.com')
+
                     ->required()
                     ->maxLength(60),
-                Forms\Components\TextInput::make('decisions')
+
+                Forms\Components\RichEditor::make('decisions')
                     ->required()
+
+                    ->placeholder('Enter the decisions of the conference.')
+
+                    // chose what buttons do't want to show
+                    // ->disableToolbarButtons(['italic'])
+                    // chose what buttons do want to show
+                    ->ToolbarButtons(['bold', 'link', 'h1', 'h2'])
+
                     ->maxLength(255),
+
                 Forms\Components\DateTimePicker::make('start_date')
+                    // hide native date picker
+                    ->native(false)
                     ->required(),
+
                 Forms\Components\DateTimePicker::make('end_date')
+                    ->native(false)
                     ->required(),
+
                 Forms\Components\TextInput::make('status')
                     ->required()
                     ->maxLength(255),
+
                 Forms\Components\TextInput::make('region')
                     ->required()
                     ->maxLength(255),
+
                 Forms\Components\Select::make('venue_id')
                     ->relationship('venue', 'name'),
+
+                // TODO
+                // Forms\Components\TextInput::make('website')
+                //     ->url()
+                //     ->label('Your Website')
+                //     ->prefix('https://')
+                //     ->prefixIcon('heroicon-o-globe-alt')
+                //     ->suffix('.com')
+                //     ->maxLength(255),
             ]);
     }
 
