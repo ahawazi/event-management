@@ -21,6 +21,18 @@ class SpeakerFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->safeEmail(),
             'bio' => fake()->text(),
+            'qualifications' => fake()->randomElements([
+                'business-leader',
+                'charisma',
+                'first-time',
+                'hometown-hero',
+                'humanitrain',
+                'laracasts-contributor',
+                'twitter-influencer',
+                'youtube-influencer',
+                'open-source',
+                'unique-perspective',
+            ]),
             'twitter_handle' => fake()->word(),
         ];
     }
