@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\Region;
+use App\Enums\Status;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\TextInput;
@@ -99,10 +100,9 @@ class Conference extends Model
                         ->schema([
 
                             Select::make('status')
+                                ->enum(Status::class)
                                 ->options([
-                                    'draft' => 'Draft',
-                                    'published' => 'Published',
-                                    'archived' => 'Archived',
+                                    Status::class
                                 ])
                                 ->required(),
                             Toggle::make('is_published')
