@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Enums\Region;
 use App\Enums\Status;
+use Filament\Forms\Components\Actions;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\TextInput;
@@ -28,6 +30,7 @@ class Conference extends Model
         'start_date' => 'datetime',
         'end_date' => 'datetime',
         'region' => Region::class,
+        'status' => Status::class,
         'venue' => 'integer',
         'venue_id' => 'integer',
     ];
@@ -101,9 +104,7 @@ class Conference extends Model
 
                             Select::make('status')
                                 ->enum(Status::class)
-                                ->options([
-                                    Status::class
-                                ])
+                                ->options(Status::class)
                                 ->required(),
                             Toggle::make('is_published')
                                 ->default(false),
@@ -131,6 +132,26 @@ class Conference extends Model
                         }),
                 ]),
 
+
+            Actions::make([
+                Action::make('star')
+                    ->label('Fill with factory tada')
+                    ->icon('heroicon-m-star')
+                    ->visible(function (string $operation) {
+                        if($operation !== 'creace') {
+                            return false;
+                        }
+                        if(! app()->environment('local')) {
+                            return false;
+                        }
+                        return true;
+                    })
+                    ->action(function ($livewire) {
+                        $data = Conference::factory()->make()->toArray();
+                        unset($data['venue_id']);
+                        $livewire->form->fill($data);
+                    }),
+            ]),
 
 
             CheckboxList::make('speakers')
