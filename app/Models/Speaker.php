@@ -31,6 +31,9 @@ class Speaker extends Model
                 ->required()
                 ->maxLength(255),
             FileUpload::make('avatar')
+                ->avatar()
+                ->directory('avatars')
+                ->imageEditor()
                 ->maxSize(1024 * 1024 * 2),
             TextInput::make('email')
                 ->email()
