@@ -6,12 +6,18 @@ use App\Filament\Resources\TalkResource\Pages;
 use App\Filament\Resources\TalkResource\RelationManagers;
 use App\Models\Talk;
 use Filament\Forms;
+use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\support\Str;
 
 class TalkResource extends Resource
 {
@@ -40,18 +46,33 @@ class TalkResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable()
+                    ->description(function (Talk $record) {
+                        return Str::limit($record->abstract, 40);
+                    }),
+                ImageColumn::make('speaker.avatar')
+                    ->label('Speaker Avatar')
+                    ->circular()
+                    ->defaultImageUrl(function ($record) {
+                        return 'https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=' . urlencode($record->speaker->name);
+                    }),
                 Tables\Columns\TextColumn::make('speaker.name')
-                    ->numeric()
+                    ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                // IconColumn::make('new_talk')->boolean(),
+                ToggleColumn::make('new_talk')
+                    ->sortable(),
+                TextColumn::make('status')
                     ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->badge()
+                    ->color(function ($state) {
+                        return $state->getColor();
+                    }),
+                IconColumn::make('length')
+                    ->icon(function ($state) {
+                        return $state->getIcon();
+                    }),
             ])
             ->filters([
                 //
