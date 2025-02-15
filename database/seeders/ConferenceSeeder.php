@@ -9,6 +9,6 @@ class ConferenceSeeder extends Seeder
 {
     public function run(): void
     {
-        Conference::factory()->count(2)->create();
+        Conference::factory()->count(10)->create();
     }
 }
