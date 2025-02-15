@@ -49,6 +49,10 @@ class TalkResource extends Resource
         return $table
             //this is save the fillter in session
             ->persistFiltersInSession()
+            //add note to filtter icone
+            ->filtersTriggerAction(function ($action) {
+                return $action->button()->label('Filters');
+            })
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable()
