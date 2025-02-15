@@ -25,6 +25,7 @@ class SpeakerFactory extends Factory
 
         return [
             'name' => fake()->name(),
+            'avatar' => fake()->imageUrl(),
             'email' => fake()->safeEmail(),
             'bio' => fake()->text(),
             'qualifications' => $qualifications,
