@@ -7,5 +7,6 @@ it('has attributes', function () {
         ->name->not->toBeNull()
         ->city->not->toBeNull()
         ->country->not->toBeNull()
-        ->postal_code->not->toBeNull();
+        ->postal_code->not->toBeNull()
+        ->region->not->toBeNull();
 });
