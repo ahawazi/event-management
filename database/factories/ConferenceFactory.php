@@ -24,10 +24,14 @@ class ConferenceFactory extends Factory
         return [
             'name' => fake()->name(),
             'decisions' => fake()->paragraph(),
+
             'start_date' => $date,
             'end_date' => $endDate,
+
+            'is_published' => fake()->boolean(),
             'status' => fake()->randomElement(Status::class),
             'region' => fake()->randomElement(Region::class),
+
             'venue_id' => Venue::factory(),
         ];
     }
