@@ -4,8 +4,8 @@ namespace App\Filament\Resources\SpeakerResource\Pages;
 
 use App\Filament\Resources\SpeakerResource;
 use App\Models\Speaker;
+use Filament\Actions;
 use Filament\Resources\Pages\ViewRecord;
-use Filament\Tables\Actions\EditAction;
 
 class ViewSpeaker extends ViewRecord
 {
@@ -14,7 +14,7 @@ class ViewSpeaker extends ViewRecord
     protected function getHeaderActions(): array
     {
         return [
-            EditAction::make()
+            Actions\EditAction::make()
                 ->slideOver()
                 ->form(Speaker::getForm())
         ];
