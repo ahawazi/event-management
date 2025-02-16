@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\TalkStatus;
 use App\Filament\Resources\SpeakerResource\Pages;
 use App\Models\Speaker;
 use Filament\Forms\Form;
@@ -86,13 +87,29 @@ class SpeakerResource extends Resource
                                     ->getStateUsing(fn($record) => '@' . ($record->twitter_handle ?? ''))
                                     ->url(fn($record) => "https://twitter.com/{$record->twitter_handle}")
                                     ->openUrlInNewTab(),
+                                TextEntry::make('has_spoken')
+                                    ->getStateUsing(function ($record) {
+                                        return $record->talks()->where('status', TalkStatus::APPROVED)->count()
+                                            > 0 ? 'Previous Speaker' : 'Has Not Spoken';
+                                    })
+                                    ->badge()
+                                    ->color(function ($state) {
+                                        if ($state === 'Previous Speaker') {
+                                            return 'success';
+                                        }
+                                        return 'primary';
+                                    }),
                             ]),
                     ]),
 
                 Section::make('Other Information')
                     ->schema([
-                        TextEntry::make('bio'),
-                        TextEntry::make('qualifications'),
+                        TextEntry::make('bio')
+                            ->extraAttributes(['class' => 'prose dark:prose-invert'])
+                            ->html(),
+                        TextEntry::make('qualifications')
+                            ->listWithLineBreaks()
+                            ->bulleted(),
                     ])
             ]);
     }
