@@ -12,14 +12,10 @@ return new class extends Migration
         Schema::create('attendees', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-
             $table->string('email');
             $table->integer('ticket_cost');
-
             $table->boolean('is_paid');
-
-            $table->foreignIdFor(Conference::class);
-
+            $table->foreignIdFor(Conference::class, 'conference_id');
             $table->timestamps();
         });
     }

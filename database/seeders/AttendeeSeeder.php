@@ -10,6 +10,6 @@ class AttendeeSeeder extends Seeder
 {
     public function run(): void
     {
-        Attendee::factory()->count(5)->create();
+        Attendee::factory()->count(10)->create();
     }
 }

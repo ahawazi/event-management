@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
             SpeakerSeeder::class,
             VenueSeeder::class,
             ConferenceSeeder::class,
-            AttendeeSeeder::class,
             TalkSeeder::class,
+            AttendeeSeeder::class,
         ]);
     }
 }
