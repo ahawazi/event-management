@@ -14,6 +14,7 @@ class ListAttendees extends ListRecords
     {
         return [
             AttendeeResource\Widgets\AttendeesStatsWidget::class,
+            AttendeeResource\Widgets\AttendeeChartWidget::class,
         ];
     }
 
