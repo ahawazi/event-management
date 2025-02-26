@@ -6,6 +6,7 @@ use Filament\Forms\Components\TextInput;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Filament\Forms\Components\Group;
 
 class Attendee extends Model
 {
@@ -20,12 +21,12 @@ class Attendee extends Model
     public static function getForm()
     {
         return [
-            TextInput::make('name')
-                ->required()
-                ->maxLength(20),
-            TextInput::make('email')
-                ->required()
-                ->maxLength(50),
+            Group::make()->columns(2)->schema([
+                TextInput::make('name')
+                    ->required()->maxLength(255),
+                TextInput::make('email')
+                    ->email()->required()->maxLength(255),
+            ])
         ];
     }
 }
