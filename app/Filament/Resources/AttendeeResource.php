@@ -33,6 +33,7 @@ class AttendeeResource extends Resource
         return Attendee::count();
     }
 
+    // this will show the details and it is the conferece name
     public static function getGlobalSearchResultDetails(Model $record): array
     {
         return [
