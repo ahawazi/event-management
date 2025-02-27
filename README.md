@@ -7,9 +7,10 @@
 
 ## Used Packages
 
--   [blueprint](https://blueprint.laravelshift.com/docs/installation/) For Code generation.
--   [laravel trend](https://github.com/Flowframe/laravel-trend) Generate trends for your models. Easily generate charts or reports.
--   [filament environment indicator](https://github.com/pxlrbt/filament-environment-indicator) confuse your tabs with different Filament environments again.
+-   [Blueprint](https://blueprint.laravelshift.com/docs/installation/) For Code generation.
+-   [Laravel trend](https://github.com/Flowframe/laravel-trend) Generate trends for your models. Easily generate charts or reports.
+-   [Environment indicator](https://github.com/pxlrbt/filament-environment-indicator) confuse your tabs with different Filament environments again.
+-   [Awcodes shout](https://filamentphp.com/plugins/awcodes-shout) A simple inline contextual notice for Filament Forms, basically just a fancy placeholder.
 
 ### Project for:
 
