@@ -9,6 +9,7 @@
 
 -   [blueprint](https://blueprint.laravelshift.com/docs/installation/) For Code generation.
 -   [laravel trend](https://github.com/Flowframe/laravel-trend) Generate trends for your models. Easily generate charts or reports.
+-   [filament environment indicator](https://github.com/pxlrbt/filament-environment-indicator) confuse your tabs with different Filament environments again.
 
 ### Project for:
 
