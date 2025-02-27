@@ -68,7 +68,10 @@ class AttendeeResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('ticket_cost')
+                    //this means when the type is the end you can search
                     ->lazy()
+                    //this means real time
+                    // ->live()
                     ->required()
                     ->numeric(),
                 Forms\Components\Toggle::make('is_paid')
